@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import StackChart from './StackChart';
+import StackChart from './components/StackChart';
 import StepperComponent from './components/StepperComponent'
 import MentalHealthComponent from './components/MentalHealthComponent'
 import Tabs from '@material-ui/core/Tabs';
