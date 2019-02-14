@@ -16,14 +16,14 @@ import {MuiThemeProvider, createMuiTheme, withStyles} from '@material-ui/core/st
 import NextButton from '@material-ui/icons/NavigateNext';
 import PreviousButton from '@material-ui/icons/NavigateBefore';
 import {mentalProblems} from './MentalIssues'
-require('typeface-graduate');
+require('typeface-aleo');
 
 const lifeStyleThemes = [ "bmi", "smoking", "exercise", "alcohol" ];
 
 const customTheme = createMuiTheme({
   typography: {
     useNextVariants: true,
-    fontFamily: 'graduate',
+    fontFamily: 'aleo',
   },
   palette: {
     primary: {
@@ -170,10 +170,10 @@ class App extends Component {
           <Grid container spacing={8}>
             <Grid item xs={4} >
               <Paper className={classes.paperPrimary}>
-                <h3>
+                <h1>
                   Below the helmet
-                </h3>
-                <img height={100} className={classes.img} src={"src/client/images/helmet.png"}/>
+                </h1>
+                  <img height={100} className={classes.img} src={"src/client/images/helmet.png"}/>
                 <p>
                   A story about mental health in construction
                 </p>
@@ -192,7 +192,7 @@ class App extends Component {
               <Grid item xs={4}>
               <Paper className={classes.paperPrimary}>
                 <h4>
-                  Stress, tiredness or overall sadness might just seem a part of life. But the below graphs will show that there are steps that you can take to minimize the risk. 
+                  
                 </h4>
               </Paper>
             </Grid>
