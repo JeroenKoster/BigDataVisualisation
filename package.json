@@ -1,5 +1,5 @@
 {
-  "name": "Big Data visualisation",
+  "name": "Big_Data_Visualisation",
   "version": "1.0.0",
   "description": "Assignment for Saxion Hogeschool",
   "main": "src/server/index.js",
