@@ -17,65 +17,89 @@ import NextButton from '@material-ui/icons/NavigateNext';
 import PreviousButton from '@material-ui/icons/NavigateBefore';
 import {mentalProblems} from './MentalIssues'
 require('typeface-aleo');
+require('typeface-graduate');
 
 const lifeStyleThemes = [ "bmi", "smoking", "exercise", "alcohol" ];
 
 const customTheme = createMuiTheme({
   typography: {
     useNextVariants: true,
-    fontFamily: 'aleo',
+    fontFamily: 'graduate',
+    h1: {
+      color: 'textPrimary',
+      fontSize: 100
+    },
+    h2: {
+      fontSize: 80
+    },
+    subtitle1: {
+      fontFamily: 'graduate',
+      fontSize: 30,
+      color: 'textSecondary',
+    },
+    body1: {
+      fontFamily: 'aleo',
+      fontSize: 40
+    }
   },
   palette: {
     primary: {
-      light: '#dbdbdb',
       main: '#337180',
-      dark: '#002884',
-      contrastText: '#fff',
     },
     secondary: {
-      light: '#79ff61',
       main: '#F7B034',
-      dark: '#00ba0d',
-      contrastText: '#000',
     },
     background: {
       main: "#337180",
       light: '#dbdbdb',
+    },
+    textPrimary: {
+      main: "#44ff66"
     }
   },
 });
 
 const styles = () => ({
   root: {
-    fontFamily: 'graduate',
+    fontFamily: 'aleo',
     textAlign: 'center',
     background: customTheme.palette.background.main,
     borderRadius: 10,
     border: 5,
   },
-  secondaryText: {
-    textColor: "#F7B034"
-  },
   graphics: {
     height: 400,
-    background: customTheme.palette.primary.light,
-    margin: 10,
-    padding: 10,
+    background: customTheme.palette.background.light,
+    margin: 16,
     justify: "center"
   },
   paperPrimary: {
     background: "#dbdbdb",
-    margin: 10,
-    padding: 10,
+    marginTop: 16,
+    marginLeft: 16,
+    marginRight: 8,
+    height: 450,
   },
   paperSecondary: {
     background: "#F7B034",
-    margin: 10,
-    padding: 10,
+    marginTop: 16,
+    marginRight: 16,
+    marginLeft: 8,
+    height: 450,
+  },
+  tabContainer: {
+    verticalAlign: 'bottom',
+    height: 80,
+    background: "#F7B034",
+    margin: 16,
+    color: customTheme.palette.primary.main
+  },
+  tabs: {
+    
   },
   tabLabel: {
     fontFamily: 'graduate',
-    fontSize: 20
+    fontSize: 35
   },
   img: {
     margin:20,
@@ -167,42 +191,39 @@ class App extends Component {
         <Paper
           className={classes.root}
         >
-          <Grid container spacing={8}>
-            <Grid item xs={4} >
+          <Grid container spacing={8} >
+            <Grid item xs={7} >
               <Paper className={classes.paperPrimary}>
-                <h1>
-                  Below the helmet
-                </h1>
-                  <img height={100} className={classes.img} src={"src/client/images/helmet.png"}/>
-                <p>
+              <img height={100} className={classes.img} src={"src/client/images/helmet.png"}/>
+              <Typography color='primary' variant='h1' gutterBottom>
+                  Beneath the helmet
+                </Typography>
+                
+                  <Typography variant="subtitle1" gutterBottom>
                   A story about mental health in construction
-                </p>
+                </Typography>
               </Paper>
             </Grid>
 
 
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Paper className={classes.paperSecondary}>
-                <h3>
-                  Most people are aware that lifestyle choices affect their physical health.
-                </h3>
-                <p>But what about mental health?</p>
+              <Typography variant="h2" color='primary' gutterBottom>
+                  Lifestyle.
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                Est nisi qui sit do nisi anim aliqua. Occaecat consecteturmagna ad  proident.Exercitation irure esse enim laborum. Pariatur voluptate enim irure cillum qui.
+                </Typography>
               </Paper>
               </Grid>
-              <Grid item xs={4}>
-              <Paper className={classes.paperPrimary}>
-                <h4>
-                  
-                </h4>
-              </Paper>
-            </Grid>
+              
           </Grid>
           <Grid container spacing={8}>
             <Grid item xs>
-              <Paper className={classes.paperSecondary}>
+              <Paper className={classes.tabContainer}>
                 <Tabs className={classes.tabs}
                       value={lifeStyleTheme}
-                      centered
+                      variant={'fullWidth'}
                       onChange={this.handleChange}
                       indicatorColor="primary"
                 >
@@ -210,13 +231,12 @@ class App extends Component {
                   <Tab value="bmi" label={<span className={classes.tabLabel}>bmi</span>}/>
                   <Tab value="smoking" label={<span className={classes.tabLabel}>smoking</span>}/>
                   <Tab value="exercise" label={<span className={classes.tabLabel}>exercise</span>}/>
-
                 </Tabs>
               </Paper>
             </Grid>
           </Grid>
           <Grid container spacing={8}>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <Paper className={classes.graphics}>
                 <StackChart
                   data={this.getStackData(this.state.data)}
@@ -224,9 +244,10 @@ class App extends Component {
                 />
               </Paper>
             </Grid>
-            <Grid item xs={6} >
+            <Grid item xs={7} >
               <Paper className={classes.graphics}>
               <StepperComponent
+                style={{height: "132px"}}
                 className={classes.stepper}
                 next={this.next}
                 back={this.back}

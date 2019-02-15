@@ -6,7 +6,7 @@ const d3 = require('d3');
 
 const dataSet = [];
 
-function Row(age, ageGroup, bmi, alcohol, sickdays, disabilityRisk, exercise, somber, smoking, tiredEndOfDay, stress, hardToRelax) {
+function Row(age, ageGroup, bmi, alcohol, sickdays, disabilityRisk, exercise, somber, smoking, tiredEndOfDay, stress, hardToRelax, enjoyableJob) {
   this.age = age;
   this.ageGroup = ageGroup;
   this.bmi = bmi;
@@ -19,6 +19,7 @@ function Row(age, ageGroup, bmi, alcohol, sickdays, disabilityRisk, exercise, so
   this.tiredEndOfDay = tiredEndOfDay;
   this.stress = stress;
   this.hardToRelax = hardToRelax;
+  this.enjoyableJob = enjoyableJob;
 }
 
 fs.createReadStream('./src/server/data.csv')
@@ -28,7 +29,7 @@ fs.createReadStream('./src/server/data.csv')
   .on('data', (d) => {
     if (d.NoshowVsShow == 'Nee') {
       // console.log(d);
-      dataSet.push(new Row(d.AGE_NAME, d.AgeCategoryNameLev1, d.BMI, d.Alkohol, d.VerzuimLev1Name, d.Arbeidsongeschiktheidsrisico, d.Bewegingsnorm, d.Somber_en_neerslachtig, d.Roken_op_dim_moment, d.Op_eind_van_de_dag, d.Vaak_last_van_stress, d.Moeilijk_ontspannen_eind_van_de_dag));
+      dataSet.push(new Row(d.AGE_NAME, d.AgeCategoryNameLev1, d.BMI, d.Alkohol, d.VerzuimLev1Name, d.Arbeidsongeschiktheidsrisico, d.Bewegingsnorm, d.Somber_en_neerslachtig, d.Roken_op_dim_moment, d.Op_eind_van_de_dag, d.Vaak_last_van_stress, d.Moeilijk_ontspannen_eind_van_de_dag, d.Plezier_in_het_werk));
     }
   })
   .on('end', () => {
@@ -47,10 +48,11 @@ router.use('/', function (req, res, next) {
 router.get('/averages', (req, res) => {
   res.json({
     sickdays: dataSet.filter(v => v.sickdays == "25 - 99 dagen").length / dataSet.filter(v => v.sickdays !== "").length * 100,
-    somber: dataSet.filter(v => v.somber == "Ja").length / dataSet.filter(v => v.sickdays !== "").length * 100,
-    tiredEndOfDay: dataSet.filter(v => v.tiredEndOfDay == "Ja").length / dataSet.filter(v => v.sickdays !== "").length * 100,
-    stress: dataSet.filter(v => v.stress == "Ja").length / dataSet.filter(v => v.sickdays !== "").length * 100,
-    hardToRelax: dataSet.filter(v => v.hardToRelax == "Ja").length / dataSet.filter(v => v.sickdays !== "").length * 100
+    somber: dataSet.filter(v => v.somber == "Ja").length / dataSet.filter(v => v.somber !== "").length * 100,
+    tiredEndOfDay: dataSet.filter(v => v.tiredEndOfDay == "Ja").length / dataSet.filter(v => v.tiredEndOfDay !== "").length * 100,
+    stress: dataSet.filter(v => v.stress == "Ja").length / dataSet.filter(v => v.stress !== "").length * 100,
+    hardToRelax: dataSet.filter(v => v.hardToRelax == "Ja").length / dataSet.filter(v => v.hardToRelax !== "").length * 100,
+    enjoyableJob: dataSet.filter(v => v.enjoyableJob == "Ja").length / dataSet.filter(v => v.enjoyableJob !== "").length * 100
   });
 });
 
@@ -98,7 +100,6 @@ router.get('/mental/:theme([a-z]+)', (req, res) => {
       })
     })
     .entries(dataSet.filter(d => (d[req.params.theme] !== '') && (d.sickdays !== '')));
-  console.log(data);
 
   res.json(data);
 });

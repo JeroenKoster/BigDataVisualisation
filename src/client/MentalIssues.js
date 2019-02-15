@@ -1,26 +1,32 @@
 export const mentalProblems = {
     "stress": 
     {
-      title: "Stress",
-      average: 13.453865966365337,
+      title: "Experience Stress",
+      average: 13.412546571342263,
       image: "stress.png"
     }, 
     "tiredEndOfDay": 
     {
-      title: "Tiredness at the end of the day",
-      average: 24.544214938639463,
+      title: "Experience tiredness at the end of the day",
+      average: 24.468834961232506,
       image: "tired.png"
     }, 
     "hardToRelax": 
     {
-      title: "Difficulty with relaxing",
+      title: "Have difficulty with relaxing",
       average: 9.772233725569416,
       image: "difficulty_relaxing.png"
     }, 
     "somber": 
     {
-      title: "Overall Sadness / gloomyness",
-      average: 0.600474723498813,
+      title: "Deal with overall Sadness / gloomyness",
+      average: 10.635374299219523,
       image: "sadness.png"
+    }
+    ,"enjoysJob": 
+    {
+      title: "Enjoy going to work",
+      average: 96.2366474938373,
+      image: "enjoy_job.png"
     }
   }

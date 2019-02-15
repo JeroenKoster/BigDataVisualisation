@@ -9,7 +9,7 @@ import {
   VictoryBar,
   VictoryTooltip,
   VictoryAxis
-
+} from 'victory';
 
 class StackChart extends Component {
 

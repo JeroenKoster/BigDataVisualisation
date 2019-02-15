@@ -43,7 +43,6 @@ class StepperComponent extends React.Component {
         steps={4}
         position="static"
         activeStep={this.state.activeStep}
-        className={classes.root}
         nextButton={
           <Button size="small" onClick={() => this.handleNext()} disabled={this.state.activeStep === 3}>
             <KeyboardArrowRight />
@@ -64,4 +63,4 @@ StepperComponent.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(StepperComponent);
+export default StepperComponent;

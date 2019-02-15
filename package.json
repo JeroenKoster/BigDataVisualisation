@@ -21,6 +21,7 @@
     "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "typeface-aleo": "0.0.69",
     "typeface-graduate": "0.0.54",
     "victory": "^31.2.0"
   },
