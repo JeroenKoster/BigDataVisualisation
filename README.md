@@ -1,4 +1,4 @@
-# simple-react-full-stack
+# Big Data Visual & Design
 
 #### Installation guide
 
